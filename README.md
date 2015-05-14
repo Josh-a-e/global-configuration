@@ -26,8 +26,8 @@ __appLogic.js (somewhere inside the application)__
 ````js
 import configuration from 'global-configuration'
 
-// If we were to import setConfiguration again and try and set it an error would be thrown.
-// Once set the configuration cannot be changed unless explicitly stated the first time it is called.
+// If we were to import setConfiguration again and try and set it an error would be thrown:
+// once set the configuration cannot be changed unless explicitly stated the first time it is called.
 
 // Equally if we were to import configuration before setConfiguration had been called an error would get thrown at compile time.
 // This (the compile time error) is probably the main reason why this package was written.
