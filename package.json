@@ -1,8 +1,8 @@
 {
   "name": "global-configuration",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "For setting a global config object managed as a requirement",
-  "main": "index.js",
+  "main": "build/index.js",
   "scripts": {
     "test": "gulp test"
   },

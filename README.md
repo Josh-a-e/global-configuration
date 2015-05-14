@@ -79,7 +79,6 @@ export default qux;
 
 __client.js__ (initiation of client side js, assume compiled via browserify / similar)
 ````js
-
 import React from 'react';
 import Page from './page.jsx';
 import setConfiguration from 'global-configuration/set';
@@ -127,7 +126,6 @@ gulp.task('test', function gulpTest() {
 
 __appLogic.test.js__
 ````js
-<!-- import appLogic from './appLogic'; -->
 import setConfiguration from 'global-configuration/set';
 import clearConfiguration from 'global-configuration/clear';
 import assert from 'assert';
