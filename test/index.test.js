@@ -1,12 +1,16 @@
 /* eslint-env mocha */
 import chai from 'chai';
 import path from 'path';
+import { argv } from 'yargs';
 
 chai.should();
 
 const expect = chai.expect;
-const pathToGlobalConfiguration = '../lib'; // todo - set via argv;
+const pathToGlobalConfiguration = argv.lib ? '../lib' : '../build';
 const pathToSetGlobalConfiguration = path.join(pathToGlobalConfiguration, 'set');
+const pathToResetGlobalConfiguration = path.join(pathToGlobalConfiguration, 'reset');
+
+const reset = require(pathToResetGlobalConfiguration);
 
 describe('global-configuration', () => {
     it('should throw an error when called without set being called prior', () => {
@@ -71,8 +75,6 @@ describe('global-configuration', () => {
         });
     });
     afterEach(() => {
-        Object.keys(require.cache).forEach((key) => {
-            delete require.cache[ key ];
-        });
+        reset();
     });
 });
