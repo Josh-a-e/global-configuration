@@ -1,6 +1,6 @@
 {
   "name": "global-configuration",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "For setting a global config object managed as a requirement",
   "main": "index.js",
   "scripts": {
