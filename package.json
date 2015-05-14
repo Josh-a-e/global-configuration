@@ -1,0 +1,23 @@
+{
+  "name": "global-configuration",
+  "version": "0.1.0",
+  "description": "For setting a global config object managed as a requirement",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Josh-a-e/global-configuration.git"
+  },
+  "keywords": [
+    "global",
+    "configuration"
+  ],
+  "author": "@joshaevans",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Josh-a-e/global-configuration/issues"
+  },
+  "homepage": "https://github.com/Josh-a-e/global-configuration#readme"
+}
