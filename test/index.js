@@ -19,7 +19,15 @@ describe('global-configuration', () => {
         const configuration = { foo: 'bar' };
         setGlobalConfiguration(configuration);
         const setConfiguration = require(pathToGlobalConfiguration);
-        setConfiguration.should.equal(configuration);
+        setConfiguration.should.deep.equal(configuration);
+    });
+    it('should not be possible to change properties on the object returned', () => {
+        const setGlobalConfiguration = require(pathToSetGlobalConfiguration);
+        setGlobalConfiguration({ foo: 'bar' });
+        const configuration = require(pathToGlobalConfiguration);
+        expect(() => {
+            configuration.foo = 'baz';
+        }).to.throw(Error);
     });
     describe('global-configuration/set', () => {
         it('should throw an error if called more than once', () => {
@@ -38,12 +46,11 @@ describe('global-configuration', () => {
         });
         it('shouldn\'t throw an error if called more than once when the initial call had freeze set to false', () => {
             const setGlobalConfiguration = require(pathToSetGlobalConfiguration);
-            const configurationA = { foo: 'bar' };
-            const configurationB = { baz: 'qux' };
-            setGlobalConfiguration(configurationA, { freeze: false });
-            setGlobalConfiguration(configurationB);
+            const configuration = { baz: 'qux' };
+            setGlobalConfiguration({ foo: 'bar' }, { freeze: false });
+            setGlobalConfiguration(configuration);
             const setConfiguration = require(pathToGlobalConfiguration);
-            setConfiguration.should.equal(configurationB);
+            setConfiguration.should.deep.equal(configuration);
         });
         it('should throw an error if unrecognised options are passed', () => {
             const setGlobalConfiguration = require(pathToSetGlobalConfiguration);
@@ -52,11 +59,15 @@ describe('global-configuration', () => {
         it('should throw an error if options are passed with unexpected types', () => {
             const setGlobalConfiguration = require(pathToSetGlobalConfiguration);
             expect(() => {
-                setGlobalConfiguration({ foo: 'bar' }, { extend: 'true' });
+                setGlobalConfiguration({ foo: 'bar' }, { assign: 'true' });
             }).to.throw(Error);
         });
-        it('should extend the configuration, rather than replacing them if extend is set to true', () => {
+        it('should extend the configuration, rather than replacing them if assign is set to true', () => {
             const setGlobalConfiguration = require(pathToSetGlobalConfiguration, { freeze: false });
+            setGlobalConfiguration({ foo: 'bar' }, { freeze: false });
+            setGlobalConfiguration({ baz: 'qux' }, { assign: true });
+            const configuration = require(pathToGlobalConfiguration);
+            configuration.should.deep.equal({ foo: 'bar', 'baz': 'qux' });
         });
     });
     afterEach(() => {

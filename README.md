@@ -1,12 +1,35 @@
-# globalConfiguration
+# global-configuration
+
+[![Build Status](https://travis-ci.org/Josh-a-e/global-configuration.svg?branch=master)](https://travis-ci.org/Josh-a-e/global-configuration)
+[![npm version](https://badge.fury.io/js/global-configuration.svg)](http://badge.fury.io/js/global-configuration)
 
 ## Purpose
 
 Provide what is essentially an explicitly set of frozen global variables which can then be required by any module that needs them.
 
-This is preferable to having to pass any configuration all the way through your node application, which in turn is better than setting global variables.
+This can be preferable to having to pass any configuration all the way through your node application, which in turn is usually better than setting global variables.
 
-## Example usage:
+## Installation
+
+```bash
+$ npm install global-configuration
+```
+
+## API
+
+```es6
+import setConfiguration from 'global-configuration/set';
+```
+
+__setConfiguration( configuration [, options] )__
+
+- __configuration__ whatever you want to be made available when subsequently importing / requiring `global-configuration`.
+- __options__ object optionally containing the following
+    - __options.freeze__ _default: true_ - used to prevent the [freezing](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze) of the configuration object.
+    - __options.assign__ _default: false_ - causes the passed configuration object to have its properties [assigned](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) to the existing configuration, rather than replacing it.
+
+
+## Example Usage
 
 ### Server Side
 
