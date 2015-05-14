@@ -6,7 +6,5 @@ Object.defineProperty(exports, '__esModule', {
 
 var _configuration = require('./configuration');
 
-void 0;
-
 exports['default'] = _configuration.set;
 module.exports = exports['default'];

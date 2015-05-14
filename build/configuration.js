@@ -23,6 +23,7 @@ function set(newConfiguration) {
     var newOptions = arguments[1] === undefined ? {} : arguments[1];
 
     void 0;
+
     if (configuration && setOptions.freeze !== false) {
         throw new Error('global-configuration is already set, the initial call should have `freeze` set to false to allow for this behaviour (e.g. in testing');
     }

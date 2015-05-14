@@ -8,9 +8,9 @@ chai.should();
 const expect = chai.expect;
 const pathToGlobalConfiguration = argv.lib ? '../lib' : '../build';
 const pathToSetGlobalConfiguration = path.join(pathToGlobalConfiguration, 'set');
-const pathToResetGlobalConfiguration = path.join(pathToGlobalConfiguration, 'reset');
+const pathToClearGlobalConfiguration = path.join(pathToGlobalConfiguration, 'clear');
 
-const reset = require(pathToResetGlobalConfiguration);
+const clear = require(pathToClearGlobalConfiguration);
 
 describe('global-configuration', () => {
     it('should throw an error when called without set being called prior', () => {
@@ -75,6 +75,6 @@ describe('global-configuration', () => {
         });
     });
     afterEach(() => {
-        reset();
+        clear();
     });
 });

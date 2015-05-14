@@ -17,16 +17,27 @@ $ npm install global-configuration
 
 ## API
 
+__setConfiguration( configuration [, options] )__
+
 ```es6
 import setConfiguration from 'global-configuration/set';
 ```
-
-__setConfiguration( configuration [, options] )__
 
 - __configuration__ whatever you want to be made available when subsequently importing / requiring `global-configuration`.
 - __options__ object optionally containing the following
     - __options.freeze__ _default: true_ - used to prevent the [freezing](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze) of the configuration object.
     - __options.assign__ _default: false_ - causes the passed configuration object to have its properties [assigned](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) to the existing configuration, rather than replacing it.
+
+__clearConfiguration()__
+
+```es6
+import clearConfiguration from 'global-configuration/clear';
+```
+
+This is a testing utility that removes the existing configuration from the require cache. By calling this, calling `setConfiguration(configuration)` and then re-requiring any target file, that target file will then be returned from require with the new `configuration` applied.
+
+
+
 
 
 ## Example Usage
@@ -116,8 +127,9 @@ gulp.task('test', function gulpTest() {
 
 __appLogic.test.js__
 ````js
-import appLogic from './appLogic';
-import setConfiguration from 'global-configuration';
+<!-- import appLogic from './appLogic'; -->
+import setConfiguration from 'global-configuration/set';
+import clearConfiguration from 'global-configuration/clear';
 import assert from 'assert';
 
 describe('appLogic', () => {
@@ -126,8 +138,13 @@ describe('appLogic', () => {
         foos.forEach((foo) => {
             // This only works because `freeze: false` was set the first time set was called (in gulp/test.js).
             setConfiguration({ foo: foo });
+            const appLogic = require('./appLogic');
             assert(appLogic() === foo);
         });
+    });
+
+    afterEach(() => {
+        clearConfiguration();
     });
 });
 ````
