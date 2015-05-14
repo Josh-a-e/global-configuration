@@ -29,5 +29,8 @@
     "gulp-eslint": "^0.12.0",
     "gulp-istanbul": "^0.9.0",
     "gulp-mocha": "^2.0.1"
+  },
+  "dependencies": {
+    "deep-freeze": "0.0.1"
   }
 }

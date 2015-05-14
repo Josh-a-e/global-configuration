@@ -79,7 +79,7 @@ export default Component;
 __gulp/test.js__
 ````js
 import gulp from 'gulp';
-import mocha from 'gulp-mocha'
+import mocha from 'gulp-mocha';
 import setConfiguration from 'global-configuration/set';
 
 setConfiguration({ foo: 'baz' }, { freeze: false });
